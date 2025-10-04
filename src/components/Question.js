@@ -1,12 +1,20 @@
 import Option from "./Option";
 
-export default function Question({ question }) {
+export default function Question({
+  question,
+  dispatch,
+  selectedAnswer,
+  score,
+}) {
   return (
     <div>
       <h4>{question.question}</h4>
-      {question.options.map((option) => (
-        <Option option={option} key={option} />
-      ))}
+      <h3>{score}</h3>
+      <Option
+        dispatch={dispatch}
+        question={question}
+        selectedAnswer={selectedAnswer}
+      />
     </div>
   );
 }

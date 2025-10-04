@@ -1,7 +1,30 @@
-export default function Option({ option }) {
+export default function Option({ question, dispatch, selectedAnswer }) {
+  const hasAnswer = selectedAnswer !== null;
   return (
     <div className="options">
-      <button className="btn btn-option">{option}</button>
+      {question.options.map((option, index) => (
+        <button
+          className={`btn btn-option ${
+            selectedAnswer === index ? "asnwer" : ""
+          } ${
+            hasAnswer
+              ? question.correctOption === index
+                ? "correct"
+                : "wrong"
+              : ""
+          }`}
+          key={option}
+          disabled={hasAnswer}
+          onClick={() =>
+            dispatch({
+              type: "newAnswer",
+              payload: index,
+            })
+          }
+        >
+          {option}
+        </button>
+      ))}
     </div>
   );
 }
