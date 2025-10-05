@@ -1,5 +1,5 @@
 export default function NextButton({ dispatch, selectedAnswer }) {
-  if (!selectedAnswer) return null;
+  if (selectedAnswer === null) return null;
 
   return (
     <button
